@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Times New Roman","Agency FB",Arial;
+    font-size: 17px;
+    color: #34495E;
+}
+.containers
+{
+    margin: auto;
+    height: auto;
+
+}
+.header
+{
+    width: 100%;
+    padding: 10px;
+    height: 70px;
+    color: #fff;
+    background-color: #00AEEF;
+
+}
+
+.header__title-first
+{
+    padding-top: 10px;
+}
+.header__logo
+{
+    float: left;
+    width: 55px;
+    height: 50px;
+}
+.header__title {
+
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+.content
+{
+    width: 500px;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #00AEEF;
+
+}
+
+.content__header {
+
+    width: 100%;
+    height: 55px;
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: #00AEEF;
+}
+.content__title {
+    color: #fff;
+}
+.content__title-second {
+    margin-top: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+.content__iclogin
+{
+    margin-left: 30px;
+    margin-top: 30px;
+    width: 100px;
+    height: 100px;
+}
+.content__tablelogin  {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.content__tablelogin input {
+   padding: 5px;
+   border: 1px solid #00AEEF;
+   border-radius: 5px;
+}
+.content__tablelogin-control
+{
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+.content__btnlogin
+{
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #00AEEF;;
+}
+.content__tablelogin-btn
+{
+    text-align: center;
+}
+.content__btnlogin-back
+{
+    background-color: #2ECC71;
+}
+
+.content__tablelogin-btn button:hover
+{
+    background-color: #0f6674;
+}
+.content__tablelogin-btn button:active
+{
+    background-color: yellow;
+}
+.content__error ul li
+{
+    list-style-type:circle;
+    color:red;
+    margin-left:20px;
+}
+
+
+
+
+

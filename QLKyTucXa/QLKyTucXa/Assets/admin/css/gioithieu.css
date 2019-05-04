@@ -1,0 +1,11 @@
+﻿.hinh {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height:400px;
+    width:500px;
+}
+.tieude{
+    text-align:center;
+    color:blue;
+}

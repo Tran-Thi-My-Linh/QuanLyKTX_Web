@@ -1,0 +1,39 @@
+﻿@using Model.EF;
+@model List<Menu>
+
+<nav class="navbar navbar" style="background-color:#00AEEF">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                @foreach (var item in Model.Where(t => t.LoaiMenu == 1))
+                {
+                    var child = Model.Where(t => t.LoaiMenu == 2 && t.MenuCha == item.IDMenu).ToList();
+                    var parentClass = child.Count() > 0 ? "class=dropdown-toggle data-toggle=dropdown" : "";
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" style="color:white" data-toggle="@item.ThuocTinh" href="@item.Link"><span class="@item.Icon"></span><span> </span>@item.TenMenu</a>
+                        @if (child.Count() > 0)
+                        {
+                            <ul class="dropdown-menu">
+                                @foreach (var childitem in child)
+                                {
+                                    <li><a href="@childitem.Link"><span class="@childitem.Icon"></span><span> </span>@childitem.TenMenu</a></li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">               
+                <li><a href="/Admin/Login/Index" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

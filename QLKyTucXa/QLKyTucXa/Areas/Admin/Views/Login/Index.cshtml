@@ -1,0 +1,96 @@
+﻿@model QLKyTucXa.Areas.Admin.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="~/Assets/admin/boostrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/admin/css/reset.css" rel="stylesheet" />
+    <link href="~/Assets/admin/css/login.css" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+    <div class="containers">
+        <div class="header">
+            <img class="header__logo" src="~/Assets/admin/img/logo_hufi.png" />
+            <h3 class="header__title header__title-first">KÍ TÚC XÁ</h3>
+            <h3 class="header__title">TRƯƠNG ĐẠI HỌC CÔNG NGHIỆP THỰC PHẨM</h3>
+        </div>
+        <div class="content">
+            <div class="content__header">
+                <p class="content__title">Hệ Thống Quản Lý</p>
+                <p class="content__title content__title-second">KÍ TÚC XÁ THÔNG MINH</p>
+            </div>
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+               
+            <table class="content__tablelogin">
+                <tr>
+                    <td>
+                        <img class="content__iclogin" src="~/Assets/admin/img/ic_login.png">
+                    </td>
+                    <td>
+                        <table class=" content__tablelogin-control">
+                            <tr>
+                                <td>Tên tài khoản :</td>
+                                <td>
+                                   
+                                        @Html.TextBoxFor(model => model.IDNguoiDung,new { @autofocus = "autofocus", @placeholder = "Nhập tên người dùng" })
+                                        @*@Html.ValidationMessage("IDNguoiDungError", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.IDNguoiDung, "", new { @class = "text-danger" })*@
+                                    
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mật khẩu :</td>
+                                <td>
+                                    
+                                        @Html.PasswordFor(model => model.MatKhau,new { @placeholder = "Nhập mật khẩu" })
+                                        @*@Html.ValidationMessage("MatKhauError", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })*@
+                                    
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                   
+                                            @Html.CheckBoxFor(model => model.RememberMe) Nhớ mật khẩu
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="content__tablelogin-btn">
+                                    <button type="submit" class="content__btnlogin">Đăng nhập</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:left;">
+                       
+                     
+                            @Html.ValidationSummary(false, "", new { @class="content__error" })
+                           
+                       
+                    </td>
+                </tr>
+
+            </table>
+
+            }
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,28 @@
+﻿.footer {
+    background-color: #00AEEF;
+    padding: 15px;
+    padding-bottom: 10px;
+    overflow: hidden
+}
+
+    .footer .logo {
+        float: left;
+        width: 105px;
+        height: 106px;
+    }
+.footer .copyright {
+    color: #fff;
+    float: left;
+    padding: 5px 10px
+}
+
+.footer .copyright span {
+        display: block;
+        margin-top: 10px
+    }
+
+ .footer .copyright span:first-child {
+            margin-top: 0
+        }
+
+

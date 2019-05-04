@@ -1,0 +1,30 @@
+﻿
+        .tableTT {
+            margin: auto;
+    
+            width:80%;
+        }
+
+        .tableTT tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+            padding: 5px;
+        }
+
+        .tableTT tr td {
+            display: table-cell;
+            vertical-align: inherit;
+            padding: 5px;         
+            height: 40px;
+        }
+
+        
+
+        .chu {
+            margin: auto;
+            font-size:50px;
+            text-align: center;
+            color: darkred;
+            font-size: 30px;
+        }
