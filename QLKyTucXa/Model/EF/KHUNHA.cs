@@ -16,7 +16,6 @@ namespace Model.EF
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDKhuNha { get; set; }
 
         [StringLength(50)]

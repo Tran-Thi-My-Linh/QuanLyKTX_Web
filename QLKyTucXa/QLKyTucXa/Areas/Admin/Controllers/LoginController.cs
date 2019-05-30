@@ -29,8 +29,9 @@ namespace QLKyTucXa.Areas.Admin.Controllers
                     var nd = dal.GetByID(model.IDNguoiDung);
                     var userSession = new UserLogin();
                     userSession.IDNguoiDung = nd.IDNguoiDung;
+                    userSession.TenNguoiDung = nd.TenNguoiDung;               
                     Session.Add(CommonConstants.USER_SESSION, userSession);
-
+                    Session["TenNguoiDung"] = nd.TenNguoiDung; 
                     return RedirectToAction("Index", "HomeAD");
                 }
                 else if (result == 0)

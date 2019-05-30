@@ -19,23 +19,24 @@ namespace Model.EF
         [Key]
         public int IDDotDangKi { get; set; }
 
-        [StringLength(30)]
+        [Required]
+        [StringLength(50)]
         public string TenDotDangKi { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgayBatDau { get; set; }
+        public DateTime NgayBatDau { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgayKetThuc { get; set; }
+        public DateTime NgayKetThuc { get; set; }
 
-        public int? ChiTieuNam { get; set; }
+        public int ChiTieuNam { get; set; }
 
-        public int? ChiTieuNu { get; set; }
+        public int ChiTieuNu { get; set; }
 
-        public int? TongChiTieu { get; set; }
+        public int TongChiTieu { get; set; }
 
         [StringLength(20)]
-        public string TrangThai { get; set; }
+        public string TrangThaiDDK { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHOANTHUDDK> KHOANTHUDDKs { get; set; }

@@ -56,23 +56,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\DanToc.cs" />
-    <Compile Include="ConnectDB\ConnectDatabase.cs" />
     <Compile Include="DAL\BaiVietDAL.cs" />
-    <Compile Include="DAL\MenuDAL.cs" />
+    <Compile Include="DAL\DotDangKyDAL.cs" />
     <Compile Include="DAL\NguoiDungDAL.cs" />
     <Compile Include="DAL\SinhVienDAL.cs" />
     <Compile Include="EF\BAIVIET.cs" />
     <Compile Include="EF\CHITIETBAOHONG.cs" />
     <Compile Include="EF\CHITIETHOADONDDK.cs" />
+    <Compile Include="EF\CHITIETHOADONPHONG.cs" />
     <Compile Include="EF\CHITIETTNXTB.cs" />
     <Compile Include="EF\DICHVU.cs" />
     <Compile Include="EF\DICHVUPHONG.cs" />
-    <Compile Include="EF\DIENNUOC.cs" />
     <Compile Include="EF\DOTDANGKI.cs" />
-    <Compile Include="EF\HOADONDDK.cs" />
-    <Compile Include="EF\HOADONDICHVUDINHKI.cs" />
-    <Compile Include="EF\HOADONDICHVUPHONG.cs" />
+    <Compile Include="EF\HOADONPHONG.cs" />
     <Compile Include="EF\KHOA.cs" />
     <Compile Include="EF\KHOANTHUDAUVAO.cs" />
     <Compile Include="EF\KHOANTHUDDK.cs" />
@@ -80,7 +76,6 @@
     <Compile Include="EF\LOAITHUCHI.cs" />
     <Compile Include="EF\LOP.cs" />
     <Compile Include="EF\MANHINH.cs" />
-    <Compile Include="EF\Menu.cs" />
     <Compile Include="EF\NGUOIDUNG.cs" />
     <Compile Include="EF\NGUYENVONG.cs" />
     <Compile Include="EF\NHOMNGUOIDUNG.cs" />
@@ -89,18 +84,17 @@
     <Compile Include="EF\PHIEUDANGKI.cs" />
     <Compile Include="EF\PHIEUDIENNUOC.cs" />
     <Compile Include="EF\PHIEULUUTRU.cs" />
-    <Compile Include="EF\PHIEUNHAPXUATTHIETBI.cs" />
+    <Compile Include="EF\PHIEUXINROI.cs" />
     <Compile Include="EF\PHONG.cs" />
     <Compile Include="EF\QLKyTucXaDbContext.cs" />
     <Compile Include="EF\SINHVIEN.cs" />
-    <Compile Include="EF\sysdiagram.cs" />
     <Compile Include="EF\TANG.cs" />
     <Compile Include="EF\THIETBI.cs" />
     <Compile Include="EF\THIETBIPHONG.cs" />
     <Compile Include="EF\THUCHI.cs" />
-    <Compile Include="EF\TRANGTHAIPHIEUDANGKI.cs" />
     <Compile Include="EF\UUTIEN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\SinhVienViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

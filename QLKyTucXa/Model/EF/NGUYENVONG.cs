@@ -12,26 +12,25 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NGUYENVONG()
         {
-            PHIEUDANGKIs = new HashSet<PHIEUDANGKI>();
-            PHIEUDANGKIs1 = new HashSet<PHIEUDANGKI>();
-            PHIEUDANGKIs2 = new HashSet<PHIEUDANGKI>();
+            SINHVIENs = new HashSet<SINHVIEN>();
+            SINHVIENs1 = new HashSet<SINHVIEN>();
+            SINHVIENs2 = new HashSet<SINHVIEN>();
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDNguyenVong { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string TenNguyenVong { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHIEUDANGKI> PHIEUDANGKIs { get; set; }
+        public virtual ICollection<SINHVIEN> SINHVIENs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHIEUDANGKI> PHIEUDANGKIs1 { get; set; }
+        public virtual ICollection<SINHVIEN> SINHVIENs1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHIEUDANGKI> PHIEUDANGKIs2 { get; set; }
+        public virtual ICollection<SINHVIEN> SINHVIENs2 { get; set; }
     }
 }

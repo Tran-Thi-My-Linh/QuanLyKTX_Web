@@ -12,23 +12,7 @@ namespace QLKyTucXa.Areas.Admin.Controllers
 {
     public class BaiVietController : BaseController
     {
-        protected void SetAlert(string message, string type)
-        {
-            TempData["AlertMessage"] = message;
-            if (type == "success")
-            {
-                TempData["AlertType"] = "alert-success";
-            }
-            else if (type == "warning")
-            {
-                TempData["AlertType"] = "alert-warning";
-            }
-            else if (type == "error")
-            {
-                TempData["AlertType"] = "alert-danger";
-            }
-        }
-
+        
         public ActionResult Index(int page=1, int pageSize=5)
         {
             var dal = new BaiVietDAL();
@@ -42,6 +26,8 @@ namespace QLKyTucXa.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create(BAIVIET model)
         {
             if (ModelState.IsValid)
@@ -51,17 +37,18 @@ namespace QLKyTucXa.Areas.Admin.Controllers
                 baiviet.TieuDe = model.TieuDe;
                 baiviet.NoiDung = model.NoiDung;
                 baiviet.HinhAnh = model.HinhAnh;
-                baiviet.NgayTao = model.NgayTao;
+                baiviet.NgayTao = DateTime.Now;
                 var result = dal.Insert(baiviet);
                 if (result > 0)
                 {
-                    SetAlert("Tạo bài viết thành công", "success");
-                    return RedirectToAction("Index", "BaiViet");
+                    MsgBox("Thêm bài viết thành công");
+                    
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Đăng ký không thành công");
+                    MsgBox("Thêm bài viết thất bại");
                 }
+               // return RedirectToAction("Index", "BaiViet");
             }
 
             return View();
@@ -86,7 +73,7 @@ namespace QLKyTucXa.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật bài viết thất bại");
+                    MsgBox("Cập nhật bài viết thất bại");
                 }
             }
             return View("Index");
@@ -111,6 +98,14 @@ namespace QLKyTucXa.Areas.Admin.Controllers
             var dal = new BaiVietDAL();
             dal.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        private void MsgBox(string sMessage)
+        {
+            string msg = "<script language=\"javascript\">";
+            msg += "alert('" + sMessage + "');";
+            msg += "</script>";
+            Response.Write(msg);
         }
     }
 }

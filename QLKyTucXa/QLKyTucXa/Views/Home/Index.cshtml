@@ -1,10 +1,68 @@
-﻿<link href="~/Content/css/Homepage.css" rel="stylesheet" />
+﻿@model IEnumerable<Model.EF.BAIVIET>
+
+
+
+<link href="~/Content/css/Homepage.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="col-md-4 middle">
+        <div class="box-header">
+            <h4><strong>THÔNG BÁO MỚI NHẤT</strong></h4>
+            <hr />
+        </div>
+        <div id="ContentCP_ctl00_ThongBaoMoiNhat" class="news events">
+            
+            @foreach (var item in Model)
+            {
+                <div class="media">
+                    <a class="pull-left" href="/TinTuc/Index/@item.IDBaiViet">
+                        <img border="0" src="@item.HinhAnh" width="64" height="64" />
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="/TinTuc/Index/@item.IDBaiViet">@item.TieuDe</a>
+                        </h4>
+                        <span class="at">Cập nhật: @item.NgayTao.Value.ToShortDateString()</span>
+                    </div>
 
+                </div>
+            }
+        </div>
 
+        <div class="view-all">
+            <a href="/index.aspx?page=listnewstc&CatID=2">Xem tất cả</a>
+        </div>
+    </div>
+    <div class="col-md-5">
 
-    <h1>abc</h1>
+    </div>
+    <div class="col-md-3">
+        <h4><strong>LIÊN KẾT NHANH</strong></h4>
+        <hr />
+        <div class="news events">
+            <div class="media">
+                <a href="http://sinhvien.hufi.edu.vn/">
+                    <img src="~/Assets/admin/img/logo_hufi.png" style="width:30px; height:30px" />  Trang sinh viên Hufi
+                </a>
+            </div>
+            <div class="media">
+                <a href="http://dpasa.hufi.edu.vn/">
+                    <img src="~/Assets/admin/img/logo_hufi.png" style="width:30px; height:30px" />   Trang công tác sinh viên Hufi
+                </a>
+            </div>
+            <div class="media">
+                <a href="https://www.facebook.com/TuyensinhHUFI/">
+                    <img src="~/Assets/admin/img/facebook.png" style="width:25px; height:25px" />   Facebook Trường ĐH CNTP
+                </a>
+            </div>
+
+        </div>
+
+        
+
+    </div>
+</div>
 

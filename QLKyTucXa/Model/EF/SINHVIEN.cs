@@ -55,7 +55,22 @@ namespace Model.EF
         [StringLength(50)]
         public string TrangThaiSV { get; set; }
 
+        [StringLength(8)]
+        public string MatKhau { get; set; }
+
+        public int? NV1 { get; set; }
+
+        public int? NV2 { get; set; }
+
+        public int? NV3 { get; set; }
+
         public virtual LOP LOP { get; set; }
+
+        public virtual NGUYENVONG NGUYENVONG { get; set; }
+
+        public virtual NGUYENVONG NGUYENVONG1 { get; set; }
+
+        public virtual NGUYENVONG NGUYENVONG2 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUDANGKI> PHIEUDANGKIs { get; set; }

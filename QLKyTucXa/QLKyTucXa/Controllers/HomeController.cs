@@ -11,16 +11,16 @@ namespace QLKyTucXa.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var dal = new BaiVietDAL();
+            var bv = dal.DanhSachBV().ToList();
+            return View(bv);
         }
 
-        [ChildActionOnly]
-        public PartialViewResult MainMenu()
-        {
-            var menu = new MenuDAL().ListMenu().ToList();
-            return PartialView(menu);
-        }
-
-
+        //[ChildActionOnly]
+        //public PartialViewResult MainMenu()
+        //{
+        //    var menu = new MenuDAL().ListMenu().ToList();
+        //    return PartialView(menu);
+        //}
     }
 }

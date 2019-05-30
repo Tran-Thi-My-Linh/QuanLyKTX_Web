@@ -6,34 +6,36 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("PHIEUNHAPXUATTHIETBI")]
-    public partial class PHIEUNHAPXUATTHIETBI
+    [Table("HOADONPHONG")]
+    public partial class HOADONPHONG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PHIEUNHAPXUATTHIETBI()
+        public HOADONPHONG()
         {
-            CHITIETTNXTBs = new HashSet<CHITIETTNXTB>();
+            CHITIETHOADONPHONGs = new HashSet<CHITIETHOADONPHONG>();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IDPhieuNhapXuat { get; set; }
-
         [Column(TypeName = "date")]
-        public DateTime? NgayNhapXuat { get; set; }
+        public DateTime NgayLap { get; set; }
 
-        [StringLength(50)]
-        public string NhanVienNhap { get; set; }
-
-        public double? TongTien { get; set; }
+        public double TongTien { get; set; }
 
         public int? IDThuChi { get; set; }
 
-        [StringLength(10)]
-        public string LoaiNhapXuat { get; set; }
+        [Required]
+        [StringLength(5)]
+        public string IDPhong { get; set; }
+
+        [Key]
+        public int IDHoaDon { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime DinhKi { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETTNXTB> CHITIETTNXTBs { get; set; }
+        public virtual ICollection<CHITIETHOADONPHONG> CHITIETHOADONPHONGs { get; set; }
+
+        public virtual PHONG PHONG { get; set; }
 
         public virtual THUCHI THUCHI { get; set; }
     }

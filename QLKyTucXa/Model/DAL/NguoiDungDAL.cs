@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace Model.DAL
 {
-    public class NguoiDungDAL:ConnectDB.ConnectDatabase
+    //public class NguoiDungDAL:ConnectDB.ConnectDatabase
+    public class NguoiDungDAL
     {
-        
+        QLKyTucXaDbContext db=null;
         public NguoiDungDAL()
-        { }
+        {
+            db = new QLKyTucXaDbContext();
+        }
 
         public string Insert(NGUOIDUNG nd)
         {

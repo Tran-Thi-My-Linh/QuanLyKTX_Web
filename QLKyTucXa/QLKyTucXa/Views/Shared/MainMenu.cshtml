@@ -1,7 +1,7 @@
 ﻿@using Model.EF;
 @model List<Menu>
-
-<nav class="navbar navbar" style="background-color:#00AEEF">
+<link href="~/Assets/admin/css/MainMenu.css" rel="stylesheet" />
+<nav class="navbar " style="background-color:#00AEEF"  >
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -24,6 +24,7 @@
                             <ul class="dropdown-menu">
                                 @foreach (var childitem in child)
                                 {
+                                    // cai nay len giao dien no la phan nao
                                     <li><a href="@childitem.Link"><span class="@childitem.Icon"></span><span> </span>@childitem.TenMenu</a></li>
                                 }
                             </ul>
@@ -32,7 +33,7 @@
                 }
             </ul>
             <ul class="nav navbar-nav navbar-right">               
-                <li><a href="/Admin/Login/Index" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+                <li><a href="/DangNhap/Index" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
             </ul>
         </div>
     </div>

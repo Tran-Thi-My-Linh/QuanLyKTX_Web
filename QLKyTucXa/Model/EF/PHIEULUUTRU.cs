@@ -9,8 +9,13 @@ namespace Model.EF
     [Table("PHIEULUUTRU")]
     public partial class PHIEULUUTRU
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PHIEULUUTRU()
+        {
+            PHIEUXINROIs = new HashSet<PHIEUXINROI>();
+        }
+
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDPhieuLuuTru { get; set; }
 
         [Required]
@@ -22,13 +27,18 @@ namespace Model.EF
         public string IDPhong { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgayBatDau { get; set; }
+        public DateTime NgayBatDau { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgayKetThuc { get; set; }
+        public DateTime NgayKetThuc { get; set; }
+
+        public bool? TrangThai { get; set; }
 
         public virtual PHONG PHONG { get; set; }
 
         public virtual SINHVIEN SINHVIEN { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHIEUXINROI> PHIEUXINROIs { get; set; }
     }
 }

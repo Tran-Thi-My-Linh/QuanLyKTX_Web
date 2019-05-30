@@ -1,0 +1,57 @@
+﻿@model QLKyTucXa.Models.SinhVienRoiModel
+
+@{
+    ViewBag.Title = "Xin Rời KTX";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/admin/css/regrister.css" rel="stylesheet" />
+<div class="jumbotron" style="background-color:aliceblue">
+    <p class="chu" style="font-size:30px"><b>Thông tin sinh viên rời</b></p>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <table class="tableTT">
+                <tr>
+                    <td width="30%"></td>
+                    <td width="70%"></td>
+                </tr>
+                <tr>
+                    <td width="30%">
+                        @Html.LabelFor(model => model.IDSinhVien)
+                    </td>
+                    <td width="70%">
+                        @Html.TextBoxFor(model => model.IDSinhVien, new { @class = "form-control form-control-lg" })
+                        @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.LyDoRoi)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(model => model.LyDoRoi, new { @class = "form-control form-control-lg", rows = "7" })
+                        
+                        @Html.ValidationMessageFor(model => model.LyDoRoi, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center">
+                        <input type="submit" value="Gửi" class="btn btn-facebook" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%"></td>
+                    <td width="70%"></td>
+                </tr>
+                
+            </table>
+
+        </div>
+    }
+</div>

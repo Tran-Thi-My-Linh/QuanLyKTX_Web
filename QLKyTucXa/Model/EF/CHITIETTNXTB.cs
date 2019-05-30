@@ -17,16 +17,16 @@ namespace Model.EF
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IDPhieuNhapXuat { get; set; }
+        public int IDThuChi { get; set; }
 
-        public int? SoLuong { get; set; }
+        public int SoLuong { get; set; }
 
-        public double? DonGia { get; set; }
+        public double DonGia { get; set; }
 
-        public double? ThanhTien { get; set; }
-
-        public virtual PHIEUNHAPXUATTHIETBI PHIEUNHAPXUATTHIETBI { get; set; }
+        public double ThanhTien { get; set; }
 
         public virtual THIETBI THIETBI { get; set; }
+
+        public virtual THUCHI THUCHI { get; set; }
     }
 }

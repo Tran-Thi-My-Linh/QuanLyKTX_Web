@@ -16,7 +16,6 @@ namespace Model.EF
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDUuTien { get; set; }
 
         [Required]

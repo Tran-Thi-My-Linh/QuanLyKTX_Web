@@ -8,9 +8,13 @@ using PagedList;
 
 namespace Model.DAL
 {
-    public class BaiVietDAL:ConnectDB.ConnectDatabase
+    //public class BaiVietDAL:ConnectDB.ConnectDatabase
+    public class BaiVietDAL
     {
-        public BaiVietDAL() { }
+        QLKyTucXaDbContext db = null;
+        public BaiVietDAL() {
+            db = new QLKyTucXaDbContext();
+        }
 
         public int Insert(BAIVIET bv)
         {
@@ -24,6 +28,11 @@ namespace Model.DAL
             return db.BAIVIETs.OrderByDescending(x=>x.NgayTao).ToPagedList(page,pageSize);
         }
 
+        public IEnumerable<BAIVIET> DanhSachBV()
+        {
+            return db.BAIVIETs;
+        }
+        
         public bool Edit(BAIVIET bv)
         {
             try

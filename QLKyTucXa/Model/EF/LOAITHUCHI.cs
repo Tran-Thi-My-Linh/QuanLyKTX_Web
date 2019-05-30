@@ -16,9 +16,9 @@ namespace Model.EF
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDLoaiThuChi { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string TenLoai { get; set; }
 

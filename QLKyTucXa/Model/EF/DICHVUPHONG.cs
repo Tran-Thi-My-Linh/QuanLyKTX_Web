@@ -19,12 +19,14 @@ namespace Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDDichVu { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? NgayDangKi { get; set; }
+        [StringLength(10)]
+        public string GhiChu { get; set; }
 
-        [StringLength(20)]
-        public string TrangThai { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime NgayDangKi { get; set; }
 
         public virtual DICHVU DICHVU { get; set; }
+
+        public virtual PHONG PHONG { get; set; }
     }
 }

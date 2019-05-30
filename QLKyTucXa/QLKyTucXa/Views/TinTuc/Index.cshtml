@@ -1,0 +1,20 @@
+﻿@model Model.EF.BAIVIET
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="jumbotron" style="width:100%; margin:auto; background-color:floralwhite">
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dd>
+                @Html.Raw(Model.NoiDung)
+            </dd>
+        </dl>
+    </div> 
+    
+</div>
+

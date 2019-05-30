@@ -13,18 +13,68 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="~/Content/JS/TopButton_2.js"></script>
     <link href="~/Content/Css_UserLayout/UserLayout.css" rel="stylesheet" />
-
+    <link href="~/Assets/admin/css/MainMenu.css" rel="stylesheet" />
 
     <link href="~/Assets/admin/css/footer.css" rel="stylesheet" />
     <script src="~/Assets/admin/js/thongbao.js"></script>
 </head>
-<body>
+<body >
     <div class="container">
 
-        <img src="~/Assets/admin/img/logo.png" width="100%" height="150px" />
-        @{Html.RenderAction("MainMenu", "Home");}
+        <img src="~/Assets/admin/img/logo.png" style="width:100%; height:150px " />
+        @*@{Html.RenderAction("MainMenu", "Home");}*@
+        <nav class="navbar" style="background-color:#00AEEF">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                @*<div class="navbar-header">
+                    <a class="navbar-brand" href="#"style="color:white">KÝ TÚC XÁ ĐHCNTP</a>
+                </div>*@
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/Home/Index" style="color:white" id="btnTrangChu">TRANG CHỦ</a></li>
+                    <li class="active"><a href="/GioiThieu/Index" style="color:white">GIỚI THIỆU</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" style="color:white" href="#">
+                            SINH VIÊN
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/SinhVienRoi/XinRoi">RỜI KTX</a></li>
+                            <li><a href="/SinhVien/TraCuu">TRA CỨU THÔNG TIN</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" style="color:white" href="#" id="btnDangKy">
+                            ĐĂNG KÝ
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a style="cursor:pointer" id="btnDangKyMoi" >ĐĂNG KÝ MỚI</a></li>
+                            <li><a style="cursor:pointer" id="btnDangKyCu">ĐĂNG KÝ CŨ</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @{
+                        bool IsLogin = false;
+                        if (!string.IsNullOrEmpty(Convert.ToString(Session[QLKyTucXa.Common.CommonConstants.USER_SESSION])))
+                        {
+                            IsLogin = true;
+                        }
+                        if (!IsLogin)
+                        {
+                            <li><a href="/DangNhap/Index" style="color:white"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+                        }
+                        else
+                        {
+                            <li><a style="color:white;">Xin chào: @Session["TenSinhVien"].ToString() </a></li>
+                        }
+                      }
+                </ul>
+            </div>
+        </nav>
+
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
@@ -57,31 +107,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3">
-
-                <h3 style="color:cornflowerblue">Tra cứu thông tin sinh viên</h3>
-                <hr />
-                <form class="form-horizontal" action="/action_page.php">
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="mssv">Mã sinh viên:</label>
-                        <div class="col-sm-7">
-                            <input type="mssv" class="form-control" id="mssv">
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-5 col-sm-7">
-                        <button type="submit" class="btn btn-info btnTraCuu">Tra cứu</button>
-                    </div>
-                </form>
             </div>
-
-        </div>
-        @if (TempData["AlertMessage"] != null)
-        {
-            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
-                @TempData["AlertMessage"]
-            </div>
-        }
-        <hr />
         @RenderBody()
         <div class="footer" style="background-color:#00aeef">
             <img class="logo" src="~/Assets/admin/img/logo_hufi.png" />
@@ -96,6 +122,49 @@
     <script src="~/Assets/admin/jquery/jquery.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Assets/admin/js/plugins/ckfinder/ckfinder.js"></script>
+    <script type="text/javascript">
+        $('#btnDangKyMoi').click(function(){
+            console.log('click dang ky')
+            $.ajax({
+                type: 'POST',
+                url: "/SinhVien/CheckDotDangKy",
+                cache: false,
+                success: function (data) {
+                    if (data.IsError) {
+                        alert(data.Message);
+                        return false;
+                    }
+                    else {
+                        window.location.href = "/SinhVien/DangKy";
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        })
+
+        $('#btnDangKyCu').click(function () {
+            console.log('click dang ky')
+            $.ajax({
+                type: 'POST',
+                url: "/PhieuDangKy/CheckDotDangKy",
+                cache: false,
+                success: function (data) {
+                    if (data.IsError) {
+                        alert(data.Message);
+                        return false;
+                    }
+                    else {
+                        window.location.href = "/PhieuDangKy/DangKy";
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        })
+    </script>
     @RenderSection("jsFooter", required: false)
 </body>
 </html>

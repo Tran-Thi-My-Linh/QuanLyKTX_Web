@@ -1,0 +1,63 @@
+﻿@model Model.EF.SINHVIEN
+@{
+    ViewBag.Title = "TraCuu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/admin/css/regrister.css" rel="stylesheet" />
+
+<div class="jumbotron" style="background-color:aliceblue; width:50%; margin:auto">
+    <h3 class="chu">Tra Cứu Thông Tin Sinh Viên</h3>
+    @using (Html.BeginForm("TraCuu", "SinhVien", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table class="tableTT" style="width: 90%">
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                            @TempData["AlertMessage"]
+                        </div>
+                    }
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.IDSinhVien)
+                </td>
+                <td width="70%">
+
+                    @Html.TextBoxFor(model => model.IDSinhVien, new { @class = "form-control form-control-lg" })
+                    @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                   
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Tra Cứu" class="btn btn-facebook" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+           
+        </table>
+
+    }
+    </div>

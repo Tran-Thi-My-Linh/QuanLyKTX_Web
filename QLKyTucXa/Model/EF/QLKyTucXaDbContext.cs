@@ -7,22 +7,20 @@ namespace Model.EF
 
     public partial class QLKyTucXaDbContext : DbContext
     {
-        public QLKyTucXaDbContext(string db)
-            : base(db)
+        public QLKyTucXaDbContext()
+            : base("name=QLKyTucXaDbContext")
         {
         }
 
         public virtual DbSet<BAIVIET> BAIVIETs { get; set; }
         public virtual DbSet<CHITIETBAOHONG> CHITIETBAOHONGs { get; set; }
         public virtual DbSet<CHITIETHOADONDDK> CHITIETHOADONDDKs { get; set; }
+        public virtual DbSet<CHITIETHOADONPHONG> CHITIETHOADONPHONGs { get; set; }
         public virtual DbSet<CHITIETTNXTB> CHITIETTNXTBs { get; set; }
         public virtual DbSet<DICHVU> DICHVUs { get; set; }
         public virtual DbSet<DICHVUPHONG> DICHVUPHONGs { get; set; }
-        public virtual DbSet<DIENNUOC> DIENNUOCs { get; set; }
         public virtual DbSet<DOTDANGKI> DOTDANGKIs { get; set; }
-        public virtual DbSet<HOADONDDK> HOADONDDKs { get; set; }
-        public virtual DbSet<HOADONDICHVUDINHKI> HOADONDICHVUDINHKIs { get; set; }
-        public virtual DbSet<HOADONDICHVUPHONG> HOADONDICHVUPHONGs { get; set; }
+        public virtual DbSet<HOADONPHONG> HOADONPHONGs { get; set; }
         public virtual DbSet<KHOA> KHOAs { get; set; }
         public virtual DbSet<KHOANTHUDAUVAO> KHOANTHUDAUVAOs { get; set; }
         public virtual DbSet<KHOANTHUDDK> KHOANTHUDDKs { get; set; }
@@ -30,7 +28,6 @@ namespace Model.EF
         public virtual DbSet<LOAITHUCHI> LOAITHUCHIs { get; set; }
         public virtual DbSet<LOP> LOPs { get; set; }
         public virtual DbSet<MANHINH> MANHINHs { get; set; }
-        public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<NGUOIDUNG> NGUOIDUNGs { get; set; }
         public virtual DbSet<NGUYENVONG> NGUYENVONGs { get; set; }
         public virtual DbSet<NHOMNGUOIDUNG> NHOMNGUOIDUNGs { get; set; }
@@ -39,15 +36,13 @@ namespace Model.EF
         public virtual DbSet<PHIEUDANGKI> PHIEUDANGKIs { get; set; }
         public virtual DbSet<PHIEUDIENNUOC> PHIEUDIENNUOCs { get; set; }
         public virtual DbSet<PHIEULUUTRU> PHIEULUUTRUs { get; set; }
-        public virtual DbSet<PHIEUNHAPXUATTHIETBI> PHIEUNHAPXUATTHIETBIs { get; set; }
+        public virtual DbSet<PHIEUXINROI> PHIEUXINROIs { get; set; }
         public virtual DbSet<PHONG> PHONGs { get; set; }
         public virtual DbSet<SINHVIEN> SINHVIENs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TANG> TANGs { get; set; }
         public virtual DbSet<THIETBI> THIETBIs { get; set; }
         public virtual DbSet<THIETBIPHONG> THIETBIPHONGs { get; set; }
         public virtual DbSet<THUCHI> THUCHIs { get; set; }
-        public virtual DbSet<TRANGTHAIPHIEUDANGKI> TRANGTHAIPHIEUDANGKIs { get; set; }
         public virtual DbSet<UUTIEN> UUTIENs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -61,19 +56,28 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<DICHVU>()
+                .HasMany(e => e.CHITIETHOADONPHONGs)
+                .WithRequired(e => e.DICHVU)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DICHVU>()
                 .HasMany(e => e.DICHVUPHONGs)
                 .WithRequired(e => e.DICHVU)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DICHVU>()
-                .HasMany(e => e.HOADONDICHVUPHONGs)
-                .WithMany(e => e.DICHVUs)
-                .Map(m => m.ToTable("CHITIETHOADONDICHVU").MapLeftKey("IDDichVu").MapRightKey("IDHoaDonDV"));
+                .HasMany(e => e.PHIEUDIENNUOCs)
+                .WithRequired(e => e.DICHVU)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DICHVUPHONG>()
                 .Property(e => e.IDPhong)
                 .IsFixedLength()
                 .IsUnicode(false);
+
+            modelBuilder.Entity<DICHVUPHONG>()
+                .Property(e => e.GhiChu)
+                .IsFixedLength();
 
             modelBuilder.Entity<DOTDANGKI>()
                 .HasMany(e => e.KHOANTHUDDKs)
@@ -86,32 +90,15 @@ namespace Model.EF
                 .HasForeignKey(e => e.IDDotDangKy)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<HOADONDDK>()
-                .HasMany(e => e.CHITIETHOADONDDKs)
-                .WithRequired(e => e.HOADONDDK)
-                .HasForeignKey(e => e.IDHoaDonDDK)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<HOADONDICHVUDINHKI>()
+            modelBuilder.Entity<HOADONPHONG>()
                 .Property(e => e.IDPhong)
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<HOADONDICHVUPHONG>()
-                .Property(e => e.ThanhTien)
-                .IsFixedLength();
-
-            modelBuilder.Entity<HOADONDICHVUPHONG>()
-                .Property(e => e.IDPhong)
-                .IsFixedLength();
-
-            modelBuilder.Entity<HOADONDICHVUPHONG>()
-                .Property(e => e.IDThuChi)
-                .IsFixedLength();
-
-            modelBuilder.Entity<HOADONDICHVUPHONG>()
-                .Property(e => e.NhanVienLap)
-                .IsFixedLength();
+            modelBuilder.Entity<HOADONPHONG>()
+                .HasMany(e => e.CHITIETHOADONPHONGs)
+                .WithRequired(e => e.HOADONPHONG)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<KHOA>()
                 .Property(e => e.IDKhoa)
@@ -127,6 +114,11 @@ namespace Model.EF
                 .WithRequired(e => e.KHOANTHUDDK)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<LOAITHUCHI>()
+                .HasMany(e => e.THUCHIs)
+                .WithRequired(e => e.LOAITHUCHI)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<LOP>()
                 .Property(e => e.IDLop)
                 .IsFixedLength()
@@ -140,18 +132,6 @@ namespace Model.EF
                 .HasMany(e => e.PHANQUYENs)
                 .WithRequired(e => e.MANHINH)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Menu>()
-                .Property(e => e.Link)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Menu>()
-                .Property(e => e.Icon)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Menu>()
-                .Property(e => e.ThuocTinh)
-                .IsUnicode(false);
 
             modelBuilder.Entity<NGUOIDUNG>()
                 .Property(e => e.IDNguoiDung)
@@ -171,23 +151,23 @@ namespace Model.EF
 
             modelBuilder.Entity<NGUOIDUNG>()
                 .HasMany(e => e.THUCHIs)
-                .WithOptional(e => e.NGUOIDUNG)
-                .HasForeignKey(e => e.IDNhanVienThuChi);
+                .WithRequired(e => e.NGUOIDUNG)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<NGUYENVONG>()
-                .HasMany(e => e.PHIEUDANGKIs)
+                .HasMany(e => e.SINHVIENs)
                 .WithOptional(e => e.NGUYENVONG)
-                .HasForeignKey(e => e.NV3);
+                .HasForeignKey(e => e.NV1);
 
             modelBuilder.Entity<NGUYENVONG>()
-                .HasMany(e => e.PHIEUDANGKIs1)
+                .HasMany(e => e.SINHVIENs1)
                 .WithOptional(e => e.NGUYENVONG1)
                 .HasForeignKey(e => e.NV2);
 
             modelBuilder.Entity<NGUYENVONG>()
-                .HasMany(e => e.PHIEUDANGKIs2)
+                .HasMany(e => e.SINHVIENs2)
                 .WithOptional(e => e.NGUYENVONG2)
-                .HasForeignKey(e => e.NV1);
+                .HasForeignKey(e => e.NV3);
 
             modelBuilder.Entity<NHOMNGUOIDUNG>()
                 .HasMany(e => e.PHANQUYENs)
@@ -224,13 +204,9 @@ namespace Model.EF
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<PHIEUNHAPXUATTHIETBI>()
-                .Property(e => e.NhanVienNhap)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<PHIEUNHAPXUATTHIETBI>()
-                .HasMany(e => e.CHITIETTNXTBs)
-                .WithRequired(e => e.PHIEUNHAPXUATTHIETBI)
+            modelBuilder.Entity<PHIEULUUTRU>()
+                .HasMany(e => e.PHIEUXINROIs)
+                .WithRequired(e => e.PHIEULUUTRU)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PHONG>()
@@ -244,7 +220,22 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<PHONG>()
+                .HasMany(e => e.DICHVUPHONGs)
+                .WithRequired(e => e.PHONG)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PHONG>()
+                .HasMany(e => e.HOADONPHONGs)
+                .WithRequired(e => e.PHONG)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PHONG>()
                 .HasMany(e => e.PHIEUBAOHONGs)
+                .WithRequired(e => e.PHONG)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PHONG>()
+                .HasMany(e => e.PHIEUDIENNUOCs)
                 .WithRequired(e => e.PHONG)
                 .WillCascadeOnDelete(false);
 
@@ -277,6 +268,10 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<SINHVIEN>()
+                .Property(e => e.MatKhau)
+                .IsFixedLength();
+
+            modelBuilder.Entity<SINHVIEN>()
                 .HasMany(e => e.PHIEUDANGKIs)
                 .WithRequired(e => e.SINHVIEN)
                 .WillCascadeOnDelete(false);
@@ -284,6 +279,11 @@ namespace Model.EF
             modelBuilder.Entity<SINHVIEN>()
                 .HasMany(e => e.PHIEULUUTRUs)
                 .WithRequired(e => e.SINHVIEN)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TANG>()
+                .HasMany(e => e.PHONGs)
+                .WithRequired(e => e.TANG)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<THIETBI>()
@@ -307,13 +307,27 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<THUCHI>()
-                .Property(e => e.IDNhanVienThuChi)
+                .Property(e => e.IDNguoiDung)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TRANGTHAIPHIEUDANGKI>()
-                .HasMany(e => e.PHIEUDANGKIs)
-                .WithOptional(e => e.TRANGTHAIPHIEUDANGKI)
-                .HasForeignKey(e => e.TrangThai);
+            modelBuilder.Entity<THUCHI>()
+                .Property(e => e.IDPhong)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<THUCHI>()
+                .Property(e => e.IDSinhVien)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<THUCHI>()
+                .HasMany(e => e.CHITIETHOADONDDKs)
+                .WithRequired(e => e.THUCHI)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<THUCHI>()
+                .HasMany(e => e.CHITIETTNXTBs)
+                .WithRequired(e => e.THUCHI)
+                .WillCascadeOnDelete(false);
         }
     }
 }

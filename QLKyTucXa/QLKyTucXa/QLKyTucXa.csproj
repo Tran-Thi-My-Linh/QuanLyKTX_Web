@@ -147,20 +147,28 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeADController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Models\BaiVietModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\SinhVienDangNhap.cs" />
     <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\GioiThieuController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KiemTraDNController.cs" />
     <Compile Include="Controllers\LienHeController.cs" />
+    <Compile Include="Controllers\PhieuDangKyController.cs" />
     <Compile Include="Controllers\SinhVienController.cs" />
+    <Compile Include="Controllers\SinhVienRoiController.cs" />
+    <Compile Include="Controllers\TinTucController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DangKyModel.cs" />
+    <Compile Include="Models\DangNhapModel.cs" />
+    <Compile Include="Models\SinhVienRoiModel.cs" />
+    <Compile Include="Models\TraCuuModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,11 +185,14 @@
     <Content Include="Assets\admin\css\footer.css" />
     <Content Include="Assets\admin\css\gioithieu.css" />
     <Content Include="Assets\admin\css\login.css" />
-    <Content Include="Assets\admin\css\register.css" />
+    <Content Include="Assets\admin\css\MainMenu.css" />
+    <Content Include="Assets\admin\css\regrister.css" />
+    <Content Include="Assets\admin\css\regristernew.css" />
     <Content Include="Assets\admin\css\reset.css" />
     <Content Include="Assets\admin\css\sb-admin-2.css" />
     <Content Include="Assets\admin\css\sb-admin-2.min.css" />
     <Content Include="Assets\admin\img\banner.png" />
+    <Content Include="Assets\admin\img\facebook.png" />
     <Content Include="Assets\admin\img\ic_login.png" />
     <Content Include="Assets\admin\img\ktx.png" />
     <Content Include="Assets\admin\img\logo.png" />
@@ -2984,20 +2995,11 @@
     <Content Include="Assets\admin\boostrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="Assets\admin\boostrap\js\bootstrap.js.map" />
     <Content Include="Assets\admin\boostrap\js\bootstrap.min.js.map" />
-    <Content Include="Assets\admin\js\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Assets\admin\js\plugins\ckfinder\userfiles\.htaccess" />
-    <Content Include="Areas\Admin\Views\BaiViet\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BaiViet\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BaiViet\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BaiViet\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Delete.cshtml" />
+    <Content Include="libman.json" />
+    <Content Include="Areas\Admin\Views\BaiViet\Create.cshtml" />
     <Content Include="Assets\admin\js\plugins\ckeditor\CHANGES.md" />
     <Content Include="Assets\admin\js\plugins\ckeditor\LICENSE.md" />
     <Content Include="Assets\admin\js\plugins\ckeditor\plugins\scayt\LICENSE.md" />
@@ -3015,6 +3017,12 @@
     <Content Include="Assets\admin\js\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\admin\js\plugins\ckeditor\skins\moono\images\Thumbs.db" />
     <Content Include="Assets\admin\js\plugins\ckeditor\skins\moono\readme.md" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\userfiles\.htaccess" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3044,11 +3052,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\LienHe\Index.cshtml" />
     <Content Include="Views\GioiThieu\Index.cshtml" />
-    <Content Include="Views\SinhVien\DangKySVCu.cshtml" />
+    <Content Include="Views\PhieuDangKy\DangKy.cshtml" />
+    <Content Include="Views\SinhVien\TraCuu.cshtml" />
+    <Content Include="Views\SinhVien\Detail.cshtml" />
+    <Content Include="Views\DangNhap\Index.cshtml" />
+    <Content Include="Views\TinTuc\Index.cshtml" />
+    <Content Include="Views\SinhVienRoi\XinRoi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Views\KiemTraDN\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,54 @@
+﻿@*@model List<Model.ViewModel.SinhVienViewModel>*@
+@model Model.EF.SINHVIEN
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div style="background-color:#00aeef">
+        <h4 style="text-align:center; color:white; padding-top:5px">THÔNG TIN SINH VIÊN</h4>
+        <h4 style="text-align:center; color:white; padding-bottom:5px"> @Html.DisplayFor(model => model.TenSV)</h4>
+    </div>
+    
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            @*<img src="@Url.Action("GetImage","SinhVien",new { byteArrayIn = Model.HinhDaiDien })" />*@
+            @*<img src="/SinhVien/byteArrayToImage/@Model.HinhDaiDien" />*@
+            <img src="@Url.Action("byteArrayToImage", new { byteArrayIn = Model.HinhDaiDien})" />
+        </div>
+        <div class="col-md-4">
+            <p>MSSV: @Html.DisplayFor(model => model.IDSinhVien)</p>
+            <p>Giới tính: @Html.DisplayFor(model => model.GioiTinh)</p>
+            <p>SDT: @Html.DisplayFor(model => model.SDT)</p>
+            <p>Dân tộc: @Html.DisplayFor(model => model.DanToc)</p>
+            <p>Lớp: @Html.DisplayFor(model => model.IDLop)</p>
+            @*<p>Mã phòng: @Html.DisplayFor(model => model.IDPhong)</p>*@
+        </div>
+        <div class="col-md-5">
+            <p>Ngày sinh: @Html.DisplayFor(model => model.NgaySinh)</p>
+            <p>Quê quán: @Html.DisplayFor(model => model.QueQuan)</p>
+            <p>Email: @Html.DisplayFor(model => model.Email)</p>
+            <p>Quốc tịch: @Html.DisplayFor(model => model.QuocTich)</p>
+            <p>Trạng thái:  @Html.DisplayFor(model => model.TrangThaiSV)</p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+

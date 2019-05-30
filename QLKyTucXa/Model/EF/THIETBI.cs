@@ -18,24 +18,25 @@ namespace Model.EF
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDThietBi { get; set; }
 
+        [Required]
         [StringLength(30)]
         public string TenThietBi { get; set; }
 
         [Column(TypeName = "image")]
         public byte[] HinhMinhHoa { get; set; }
 
-        public double? GiaTri { get; set; }
+        public int TongSoLuong { get; set; }
 
-        public int? TongSoLuong { get; set; }
+        public int SoLuongTon { get; set; }
 
-        public int? SoLuongTon { get; set; }
+        public int SoLuongPhanBo { get; set; }
 
-        public int? SoLuongPhanBo { get; set; }
+        public int SoLuongHong { get; set; }
 
-        public int? SoLuongHong { get; set; }
+        [StringLength(20)]
+        public string DonViTinh { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETBAOHONG> CHITIETBAOHONGs { get; set; }
